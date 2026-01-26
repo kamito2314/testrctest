@@ -85,6 +85,28 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 	window._wp_rp_post_tags = [];
 	window._wp_rp_promoted_content = true;
 </script>
+    <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('406-PFO-715');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+    </script>
 <link rel="stylesheet" href="https://mazrica.com/wp-content/plugins/wordpress-23-related-posts-plugin/static/themes/vertical-m.css?version=3.6.4" />
 <link rel="alternate" hreflang="en-US" href="https://mazrica.com/en/" />
 <link rel="alternate" hreflang="ja" href="https://mazrica.com/" />
