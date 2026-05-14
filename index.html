@@ -1,180 +1,90 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="ja">
-  <head>
-	  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MCMW688T');</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ウィジェットテスト</title>
-    <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-      }
-      .visual-fullscreen {
-        position: fixed;
-        inset: 0;
-        /* 下層: グラデーション, 上層: グリッド */
-        background: linear-gradient(135deg, #0ea5e9, #8b5cf6),
-          linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.12) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.12) 1px,
-            transparent 1px
-          );
-        background-size: auto, 24px 24px, 24px 24px;
-        background-attachment: fixed;
-        z-index: -1;
-      }
-      .viewport-debug {
-        position: fixed;
-        top: 8px;
-        left: 8px;
-        z-index: 9999;
-        pointer-events: none;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", monospace;
-        color: #fff;
-      }
-      .viewport-debug .panel {
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 10px 12px;
-        line-height: 1.4;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-      }
-      .viewport-debug .label {
-        opacity: 0.8;
-      }
-      .viewport-debug .value {
-        font-weight: 700;
-      }
-      .demo-wrap {
-        max-width: 1200px;
-        margin: 24px auto 8px;
-        padding: 0 16px;
-        color: #fff;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-      }
-      .demo-wrap h2 {
-        margin: 0 0 12px;
-        font-size: 20px;
-      }
-      .demo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 12px;
-      }
-      .demo-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        padding: 12px;
-        aspect-ratio: 4 / 3;
-        color: #fff;
-        font-weight: 700;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-      }
-      .demo-item:nth-child(6n + 1) {
-        background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      }
-      .demo-item:nth-child(6n + 2) {
-        background: linear-gradient(135deg, #22c55e, #84cc16);
-      }
-      .demo-item:nth-child(6n + 3) {
-        background: linear-gradient(135deg, #f97316, #f59e0b);
-      }
-      .demo-item:nth-child(6n + 4) {
-        background: linear-gradient(135deg, #ec4899, #a855f7);
-      }
-      .demo-item:nth-child(6n + 5) {
-        background: linear-gradient(135deg, #06b6d4, #10b981);
-      }
-      .demo-item:nth-child(6n + 6) {
-        background: linear-gradient(135deg, #3b82f6, #a855f7);
-      }
-      .demo-item .js-box-size {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", monospace;
-        letter-spacing: 0.2px;
-        text-align: center;
-      }
-    </style>
-  </head>
-  <body>
-	  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCMW688T"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <div class="visual-fullscreen"></div>
-    <section class="demo-wrap">
-      <h2>レスポンシブボックス</h2>
-      <div class="demo-grid">
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-        <div class="demo-item"><span class="js-box-size">-</span></div>
-      </div>
-    </section>
-    <div class="viewport-debug">
-      <div class="panel">
-        <div>
-          <span class="label">inner</span>:
-          <span id="vv-inner" class="value">-</span>
-        </div>
-        <div>
-          <span class="label">visualViewport</span>:
-          <span id="vv-visual" class="value">-</span>
-        </div>
-        <div>
-          <span class="label">DPR</span>:
-          <span id="vv-dpr" class="value">-</span> /
-          <span class="label">orientation</span>:
-          <span id="vv-orientation" class="value">-</span>
-        </div>
-      </div>
-    </div>
-    <h1>AIチャットウィジェットテスト</h1>
-    <p>このページにはAIチャットウィジェットが埋め込まれています。</p>
+<head>
+<meta charset="UTF-8">
 
-    <h2>テスト項目</h2>
-    <ul>
-      <li>✅ ウィジェットが正常に表示される</li>
-      <li>✅ PC版でウィジェットの高さが calc(100dvh - 90px) になっている</li>
-      <li>✅ チャットウィンドウのタイトル部に閉じるボタン（×）が表示される</li>
-      <li>✅ 閉じるボタンをクリックするとチャットウィンドウが閉じる</li>
-      <li>✅ フローティングボタンをクリックするとチャットウィンドウが開く</li>
-    </ul>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width"> -->
+<meta name="facebook-domain-verification" content="xl9c86cpbw5f6v1h8yr8pk6suzib5w">
+<meta name="format-detection" content="telephone=no"><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+<!-- ▼Swiper -->
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+<!-- ▲Swiper -->
+<link rel="apple-touch-icon" sizes="120x120" href="https://corp-site.mazrica.com/assets/images/favicon/favicon.png">
+<link rel="icon" type="image/png" href="https://corp-site.mazrica.com/assets/images/favicon/favicon.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://corp-site.mazrica.com/assets/images/favicon/favicon.png" sizes="16x16">
+<!--<link rel="manifest" href="https://corp-site.mazrica.com/assets/images/favicon/manifest.json">-->
+<link rel="mask-icon" href="https://corp-site.mazrica.com/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><!-- ▼google analytics -->
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-60716665-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-60716665-1');
+</script>
+<!-- ▲google analytics -->
+		<!-- All in One SEO 4.5.3.1 - aioseo.com -->
+		<title>株式会社マツリカ | Mazrica Inc.</title>
+		<meta name="description" content="株式会社マツリカは「創造性高く遊ぶように働ける環境を創る」のVisionのもと、テクノロジーの力であらゆるワークライフを支援し、人々の生産性向上と創造性の解放を実現しています。" />
+		<meta name="robots" content="max-image-preview:large" />
+		<link rel="canonical" href="https://mazrica.com/" />
+		<meta name="generator" content="All in One SEO (AIOSEO) 4.5.3.1" />
+		<meta property="og:locale" content="ja_JP" />
+		<meta property="og:site_name" content="株式会社マツリカ | Mazrica Inc." />
+		<meta property="og:type" content="company" />
+		<meta property="og:title" content="株式会社マツリカ | Mazrica Inc." />
+		<meta property="og:description" content="株式会社マツリカは「創造性高く遊ぶように働ける環境を創る」のVisionのもと、テクノロジーの力であらゆるワークライフを支援し、人々の生産性向上と創造性の解放を実現しています。" />
+		<meta property="og:url" content="https://mazrica.com/" />
+		<meta property="og:image" content="https://corp-site.mazrica.com/assets/images/common/ogp.jpg" />
+		<meta property="og:image:secure_url" content="https://corp-site.mazrica.com/assets/images/common/ogp.jpg" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="株式会社マツリカ | Mazrica Inc." />
+		<meta name="twitter:description" content="株式会社マツリカは「創造性高く遊ぶように働ける環境を創る」のVisionのもと、テクノロジーの力であらゆるワークライフを支援し、人々の生産性向上と創造性の解放を実現しています。" />
+		<meta name="twitter:image" content="https://corp-site.mazrica.com/assets/images/common/ogp.jpg" />
+		<meta name="google" content="nositelinkssearchbox" />
+		<script type="application/ld+json" class="aioseo-schema">
+			{"@context":"https:\/\/schema.org","@graph":[{"@type":"BreadcrumbList","@id":"https:\/\/mazrica.com\/#breadcrumblist","itemListElement":[{"@type":"ListItem","@id":"https:\/\/mazrica.com\/#listItem","position":1,"name":"Home"}]},{"@type":"Organization","@id":"https:\/\/mazrica.com\/#organization","name":"\u682a\u5f0f\u4f1a\u793e\u30de\u30c4\u30ea\u30ab | Mazrica Inc.","url":"https:\/\/mazrica.com\/"},{"@type":"WebPage","@id":"https:\/\/mazrica.com\/#webpage","url":"https:\/\/mazrica.com\/","name":"\u682a\u5f0f\u4f1a\u793e\u30de\u30c4\u30ea\u30ab | Mazrica Inc.","description":"\u682a\u5f0f\u4f1a\u793e\u30de\u30c4\u30ea\u30ab\u306f\u300c\u5275\u9020\u6027\u9ad8\u304f\u904a\u3076\u3088\u3046\u306b\u50cd\u3051\u308b\u74b0\u5883\u3092\u5275\u308b\u300d\u306eVision\u306e\u3082\u3068\u3001\u30c6\u30af\u30ce\u30ed\u30b8\u30fc\u306e\u529b\u3067\u3042\u3089\u3086\u308b\u30ef\u30fc\u30af\u30e9\u30a4\u30d5\u3092\u652f\u63f4\u3057\u3001\u4eba\u3005\u306e\u751f\u7523\u6027\u5411\u4e0a\u3068\u5275\u9020\u6027\u306e\u89e3\u653e\u3092\u5b9f\u73fe\u3057\u3066\u3044\u307e\u3059\u3002","inLanguage":"ja","isPartOf":{"@id":"https:\/\/mazrica.com\/#website"},"breadcrumb":{"@id":"https:\/\/mazrica.com\/#breadcrumblist"},"datePublished":"2023-07-18T12:41:43+09:00","dateModified":"2023-07-18T17:24:41+09:00"},{"@type":"WebSite","@id":"https:\/\/mazrica.com\/#website","url":"https:\/\/mazrica.com\/","name":"\u682a\u5f0f\u4f1a\u793e\u30de\u30c4\u30ea\u30ab | Mazrica Inc.","description":"\u682a\u5f0f\u4f1a\u793e\u30de\u30c4\u30ea\u30ab\u306f\u300c\u5275\u9020\u6027\u9ad8\u304f\u904a\u3076\u3088\u3046\u306b\u50cd\u3051\u308b\u74b0\u5883\u3092\u5275\u308b\u300d\u306eVision\u306e\u3082\u3068\u3001\u30c6\u30af\u30ce\u30ed\u30b8\u30fc\u306e\u529b\u3067\u3042\u3089\u3086\u308b\u30ef\u30fc\u30af\u30e9\u30a4\u30d5\u3092\u652f\u63f4\u3057\u3001\u4eba\u3005\u306e\u751f\u7523\u6027\u5411\u4e0a\u3068\u5275\u9020\u6027\u306e\u89e3\u653e\u3092\u5b9f\u73fe\u3057\u3066\u3044\u307e\u3059\u3002","inLanguage":"ja","publisher":{"@id":"https:\/\/mazrica.com\/#organization"}}]}
+		</script>
+		<!-- All in One SEO -->
 
-    <h2>デバッグ機能</h2>
-    <button onclick="window.MastraAiChatWidget?.showProfileForm()" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #6366F1; color: white; border: none; border-radius: 8px;">
-      プロフィールフォームを表示
-    </button>
-    <p style="color: #666; font-size: 14px; margin-top: 8px;">
-      ※ Marketo Forms 2.0 API連携をテストするには、このボタンでフォームを表示し、メールアドレスを入力して送信してください。
-    </p>
-    <!-- Marketo Munchkin トラッキングコード（Forms 2.0 APIとの連携に必要） -->
+
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<script data-cfasync="false" data-pagespeed-no-defer>
+	var gtm4wp_datalayer_name = "dataLayer";
+	var dataLayer = dataLayer || [];
+</script>
+<!-- End Google Tag Manager for WordPress by gtm4wp.com --><link rel='stylesheet' id='wp-block-library-css' href='https://mazrica.com/wp-includes/css/dist/block-library/style.min.css?ver=6.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://mazrica.com/wp-includes/css/classic-themes.min.css?ver=6.2.2' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='set_vk_post_autor_css-css' href='https://mazrica.com/wp-content/plugins/vk-post-author-display/assets/css/vk-post-author.css?ver=1.24.1' type='text/css' media='all' />
+<link rel='stylesheet' id='bogo-css' href='https://mazrica.com/wp-content/plugins/bogo/includes/css/style.css?ver=3.2.1' type='text/css' media='all' />
+<link rel='stylesheet' id='parent-style-css' href='https://mazrica.com/wp-content/themes/mazrica-corp_250815/style.css?ver=6.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='child-style-css' href='https://mazrica.com/wp-content/themes/mazrica-corp-child_251125/style.css?ver=6.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='vk-font-awesome-css' href='https://mazrica.com/wp-content/plugins/vk-post-author-display/vendor/vektor-inc/font-awesome-versions/src/versions/6/css/all.min.css?ver=6.4.2' type='text/css' media='all' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://mazrica.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://mazrica.com/wp-includes/wlwmanifest.xml" />
+<link rel='shortlink' href='https://mazrica.com/' />
+<script type="text/javascript">
+	window._wp_rp_static_base_url = 'https://wprp.sovrn.com/static/';
+	window._wp_rp_wp_ajax_url = "https://mazrica.com/wp-admin/admin-ajax.php";
+	window._wp_rp_plugin_version = '3.6.4';
+	window._wp_rp_post_id = '4899';
+	window._wp_rp_num_rel_posts = '6';
+	window._wp_rp_thumbnails = true;
+	window._wp_rp_post_title = 'HOME';
+	window._wp_rp_post_tags = [];
+	window._wp_rp_promoted_content = true;
+</script>
     <script type="text/javascript">
     (function() {
       var didInit = false;
@@ -197,83 +107,392 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
     </script>
+<link rel="stylesheet" href="https://mazrica.com/wp-content/plugins/wordpress-23-related-posts-plugin/static/themes/vertical-m.css?version=3.6.4" />
+<link rel="alternate" hreflang="en-US" href="https://mazrica.com/en/" />
+<link rel="alternate" hreflang="ja" href="https://mazrica.com/" />
 
-    <!-- Marketo Forms 2.0 スクリプト（ベースURL自動検出用） -->
-    <script src="https://lp.mazrica.com/js/forms2/js/forms2.min.js"></script>
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<!-- GTM Container placement set to footer -->
+<script data-cfasync="false" data-pagespeed-no-defer>
+	var dataLayer_content = {"pagePostType":"frontpage","pagePostType2":"single-page","pagePostAuthor":"mazrica"};
+	dataLayer.push( dataLayer_content );
+</script>
+<script data-cfasync="false">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MCMW688T');
+</script>
+<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager for WordPress by gtm4wp.com --><style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><link rel="icon" href="https://mazrica.com/wp-content/uploads/2023/05/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://mazrica.com/wp-content/uploads/2023/05/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://mazrica.com/wp-content/uploads/2023/05/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://mazrica.com/wp-content/uploads/2023/05/cropped-favicon-270x270.png" />
+<!-- ▼OGP -->
+<meta property="og:url" content="https://mazrica.com/" />
+<meta property="og:title" content="株式会社マツリカ | Mazrica Inc." />
+<meta property="og:description" content="株式会社マツリカは「創造性高く遊ぶように働ける環境を創る」のVisionのもと、テクノロジーの力であらゆるワークライフを支援し、人々の生産性向上と創造性の解放を実現しています。" />
+<meta property="og:image" content="" />
+<meta property="og:image" content="https://corp-site.mazrica.com/assets/images/common/ogp.jpg" />
+<!-- ▲OGP -->
+<!-- ▼css -->
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/reset.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/style.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/news.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/swiper.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/header.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/mv.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/top.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/page-aboutus.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/page-business.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/page-news.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/contact.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/footer.css?1755238407">
+<link rel="stylesheet" href="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/css/common.css?1755238407">
+<!-- ▲css -->
+</head>
+<style>
+	/* htmlのスタイルを打ち消す */
+	html{
+		margin-top:0 !important;
+	}
+</style>
+<body id="top">
+	<header class="header js-header">
+		<div class="header-inner">
+			<div class="logo"><a href="/"><img src="https://corp-site.mazrica.com/assets/images/common/logo/mazrica_logo.png" class="header_logo" alt="マツリカ ロゴ" id="headerlogo"></a></div>
+			<!-- nav-inner-menu -->
+			<div class="nav-inner-menu">
+				<ul class="inner-menu inner-menu--left">
+					<li><a href="https://mazrica.com">TOP</a></li>
+					<li><a href="https://mazrica.com/aboutus/">ABOUT US</a></li>
+					<li><a href="https://mazrica.com/business">BUSINESS</a></li>
+					<li><a href="https://mazrica.com/news">NEWS</a></li>
+				</ul>
+				<ul class="inner-menu">
+					<li>
+						<a href="https://recruit.mazrica.com/team" target="_blank">
+							TEAM<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png">
+						</a>
+					</li>
+					<li>
+						<a href="https://recruit.mazrica.com" target="_blank">
+							RECRUIT<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png">
+						</a>
+					</li>
+				</ul>
+				<div class="header-banner">
+					<a href="https://product-senses.mazrica.com/senseslab/" target="_blank">
+						Mazrica Business Lab.<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png">
+					</a>
+					<a href="https://times.mazrica.com" target="_blank">
+						Mazrica times<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png">
+					</a>
+				</div>
+				<div class="btn-wrap">
+					<a href="https://mazrica.com/contact" class="btn white txt-black header-btn">お問い合わせ</a>
+					<a href="https://hrmos.co/pages/mazrica-inc" class="btn white header-btn" target="_blank">採用ページへ</a>
+				</div>
+			</div>
+			<!-- /nav-mobi -->
+			<div class="header-right">
+				<p class="header-product-banner js-banner">
+					<a href="https://product-senses.mazrica.com/" target="_blank">
+						<img src="https://mazrica.com/wp-content/uploads/2023/11/header_banner.png" alt="Mazrica Service Site">
+					</a>
+				</p>
+				<div class="header-nav-btn">
+					<div class="trigger"> <span></span> <span></span> <span></span> </div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main class="main">
+		<div class="loading js-loading"></div>
+<div class="mv-wrap js-mvWrap_sp">
+	<div class="video_wrapper js-mv">
+		<h1 class="top-ttl">
+			<img class="top-ttl_pc" src="https://corp-site.mazrica.com/assets/images/top/mv/pc/Vision-pc.png" alt="創造性高く遊ぶように働ける環境を創る">
+			<img class="top-ttl_sp" src="https://corp-site.mazrica.com/assets/images/top/mv/sp/Vision-sp.png" alt="創造性高く遊ぶように働ける環境を創る">
+		</h1>
+		<video class="video_pc js_mvPc" src="https://corp-site.mazrica.com/assets/images/top/mv/pc/KeyVisual-PC.mp4" muted playsinline autoplay loop></video>
+		<video class="video_sp" src="https://corp-site.mazrica.com/assets/images/top/mv/sp/KeyVisual-sp.mp4" muted playsinline autoplay loop></video>
+	</div>
+	<a href="#news" class="scroll"><img src="https://corp-site.mazrica.com/assets/images/top/mv/scroll.png"></a>
+</div>
+<nav class="sns-nav">
+	<ul class="sns-nav-list">
+		<li><a href="https://recruit.mazrica.com"><img src="https://corp-site.mazrica.com/assets/images/top/mv/Recruit.png" alt="RECRUIT" target="_blank"></a></li>
+		<li><a href="https://www.facebook.com/mazrica/"><img src="https://corp-site.mazrica.com/assets/images/top/mv/Facebook.png" alt="Facebook" target="_blank"></a></li>
+	</ul>
+</nav>
+<div class="content js-bgBlur">
+	<div class="js-changeBg">
+		<div class="title js-titleSp">
+		</div>
+		<p class="banner">
+			<a href="https://product-senses.mazrica.com/" target="_blank">
+				<img src="https://mazrica.com/wp-content/uploads/2023/11/banner.png" alt="Mazrica Service Site">
+			</a>
+		</p>
+		<section id="news" class="news section">
+			<h2 class="section_ttlImg"><img src="https://corp-site.mazrica.com/assets/images/top/title/NEWS.png" alt="NEWS"></h2>
+			<div class="section_ttlText js-changeTxtColor">
+				<span class="section_ttlTextBorder js-section-border"></span>
+				ニュース
+			</div>
+			<div class="section_inner">
+				<table class="table news-table">
+					<tbody>
+												<tr>
+							<th>2025-11-25</th>
+							<td class="table-news-category">
+								<div class="news-table-label mdl-iceblue">サービス</div><div class="news-table-label mdl-iceblue">プレスリリース</div>							</td>
+							<td><div><a href="https://mazrica.com/press-release/20251125/">マツリカ、営業・マーケティングAIエージェント「DealAgent」を「Mazrica Engage」へ名称変更　ー累計対話数1万回突破、AIドリブングロースでビジネス成長を加速</a></div></td>
+						</tr>
+												<tr>
+							<th>2025-11-19</th>
+							<td class="table-news-category">
+								<div class="news-table-label mdl-iceblue">サービス</div><div class="news-table-label mdl-iceblue">プレスリリース</div>							</td>
+							<td><div><a href="https://mazrica.com/press-release/20251119/">デジタルセールスルーム「Mazrica DSR」、大幅なUIリニューアルを実施   ― 生成AI時代に対応した「AI First」なインタフェースへ進化 ―</a></div></td>
+						</tr>
+												<tr>
+							<th>2025-11-13</th>
+							<td class="table-news-category">
+								<div class="news-table-label mdl-iceblue">サービス</div><div class="news-table-label mdl-iceblue">プレスリリース</div>							</td>
+							<td><div><a href="https://mazrica.com/press-release/20251113/">Mazrica Sales、営業生産性を向上させるAIアシスタントを提供開始、データ抽出・入力自動化で提案に集中できる営業組織へ　　第一弾として、営業活動データの中から必要な情報を検索し、AIが即時に要約する機能をリリース</a></div></td>
+						</tr>
+											</tbody>
+				</table>
+				<div class="section-linkWrap">
+					<a href="https://mazrica.com/news" class="section-linkTxt js-changeTxtColor">
+						詳しく見る
+						<span class="section_linkImgWrap">
+							<img class="section_linkImg section_linkImg--navy js-linkImg_navy" src="https://corp-site.mazrica.com/assets/images/common/link/link_blue.png" alt="">
+							<img class="section_linkImg section_linkImg--white js-linkImg_white" src="https://corp-site.mazrica.com/assets/images/common/link/link_white.png" alt="">
+						</span>	
+					</a>
+				</div>
+			</div>
+		</section>
+		<section class="about-us section">
+			<h2 class="section_ttlImg"><img src="https://corp-site.mazrica.com/assets/images/top/title/ABOUT US.png" alt="ABOUT US"></h2>
+			<div class="section_ttlText  js-changeTxtColor">
+				<span class="section_ttlTextBorder js-section-border"></span>
+				私たちについて
+			</div>
+			<div class="section_inner about-us_content">
+				<div class="about-us_left">
+					<p class="about-us_subTxt js-changeTxtColor">Vision</p>
+					<h3 class="about-us_mainTxt">
+						<img class="about-us_mainTxt_pc" src="https://corp-site.mazrica.com/assets/images/common/about_txt.png" alt="創造性高く遊ぶように働ける環境を創る">
+						<img class="about-us_mainTxt_sp" src="https://corp-site.mazrica.com/assets/images/common/about_txt_sp.png" alt="創造性高く遊ぶように働ける環境を創る">
+					</h3>
+					<p class="section_txt js-changeTxtColor">私たちはテクノロジーの力であらゆるワークライフを支援し、<br class="pc-only">人々の生産性向上と創造性の解放を実現しています。</p>
+					<div class="section-linkWrap about-us_linkWrap">
+						<a href="https://mazrica.com/aboutus" class="section-linkTxt js-changeTxtColor">
+							詳しく見る
+							<span class="section_linkImgWrap">
+								<img class="section_linkImg section_linkImg--navy js-linkImg_navy" src="https://corp-site.mazrica.com/assets/images/common/link/link_blue.png" alt="">
+								<img class="section_linkImg section_linkImg--white js-linkImg_white" src="https://corp-site.mazrica.com/assets/images/common/link/link_white.png" alt="">
+							</span>	
+						</a>
+					</div>
+				</div>
+				<div class="about-us_img about-us_right">
+					<p>
+						<img src="https://corp-site.mazrica.com/assets/images/top/about-us.png" alt="">
+					</p>
+				</div>
+			</div>
+		</section>
+		<section class="business section js-business">
+			<h2 class="section_ttlImg"><img src="https://corp-site.mazrica.com/assets/images/top/title/BUSINESS.png" alt="BUSINESS"></h2>
+			<div class="section_ttlText js-changeTxtColor">
+				<span class="section_ttlTextBorder js-section-border"></span>
+				事業内容
+			</div>
+			<div class="section_inner">
+				<div class="business_content">
+					<div class="business_left">
+						<h3 class="section_mainTxt js-changeTxtColor">誰でも使える、<br>誰でも成果を出せる<br>次世代型<br class="sp-only">営業DXプラットフォーム
+						</h3>
+						<div class="section_txt js-changeTxtColor">
+							<p>Mazricaは、蓄積された組織の営業データから<br class="pc-only">AIが次のアクションを示唆し、組織の成果を最大化するSFA/CRM。<br class="pc-only">営業の案件や顧客管理だけではなく、<br class="pc-only">組織のナレッジやデータを資産に変えて"強い営業組織”をつくる<br class="pc-only">プラットフォームです。</p>
+						</div>
+						<div class="section-linkWrap">
+							<a href="https://mazrica.com/business" class="section-linkTxt js-changeTxtColor">
+								詳しく見る
+								<span class="section_linkImgWrap">
+									<img class="section_linkImg section_linkImg--navy js-linkImg_navy" src="https://corp-site.mazrica.com/assets/images/common/link/link_blue.png" alt="">
+									<img class="section_linkImg section_linkImg--white js-linkImg_white" src="https://corp-site.mazrica.com/assets/images/common/link/link_white.png" alt="">
+								</span>	
+							</a>
+						</div>
+					</div>
+					<div class="business_img business_right">
+						<img src="https://mazrica.com/wp-content/uploads/2023/06/1.png" alt="">
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="mazrica-times mdl-col section">
+			<h2 class="section_ttlImg"><img src="https://corp-site.mazrica.com/assets/images/top/title/MAZRICA TIMES.png" alt="mazrica Times"></h2>
+			<div class="section_ttlText js-changeTxtColor">
+				<span class="section_ttlTextBorder js-section-border"></span>
+				「働く」にフォーカスしたメディア  Mazrica Times
+			</div>
+			<div class="section_inner">
+				<ul class="mdl-3col-list report">
+	<li>
+		<div class="">
+			<a href="https://times.mazrica.com/work-style/about-offboarding/">
+				<img src="https://mazrica.com/wp-content/uploads/sites/3/2023/03/mt_230228-min-680x400.png" class="mazrica-times_img" alt="オフボーディングとは？退職エクスペリエンスを向上させるための施策">
+			</a>
+		</div>
+		<div>
+			<p class="mazrica-times_date js-changeTxtColor">2023-03-01</p>
+			<p class="mazrica-times_ttl"><a class="mazrica-times_titleLink js-changeTxtColor" href="https://times.mazrica.com/work-style/about-offboarding/">オフボーディングとは？退職エクスペリエンスを向上させるための施策</a></p>
+<ul class="mdl-label"><li class="mazrica-times_tag js-changeTxtColor"><a href="https://times.mazrica.com/tag/%e3%82%aa%e3%83%95%e3%83%9c%e3%83%bc%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0/" rel="tag">オフボーディング</a></li></ul>		</div>
+	</li>
+	<li>
+		<div class="">
+			<a href="https://times.mazrica.com/work-style/silent-leaving/">
+				<img src="https://mazrica.com/wp-content/uploads/sites/3/2023/02/mt_230216-min-680x400.png" class="mazrica-times_img" alt="静かな退職（頑張りすぎない働き方）とは？会社はどう向き合うべき？">
+			</a>
+		</div>
+		<div>
+			<p class="mazrica-times_date js-changeTxtColor">2023-02-16</p>
+			<p class="mazrica-times_ttl"><a class="mazrica-times_titleLink js-changeTxtColor" href="https://times.mazrica.com/work-style/silent-leaving/">静かな退職（頑張りすぎない働き方）とは？会社はどう向き合うべき？</a></p>
+<ul class="mdl-label"><li class="mazrica-times_tag js-changeTxtColor"><a href="https://times.mazrica.com/tag/%e9%9d%99%e3%81%8b%e3%81%aa%e9%80%80%e8%81%b7/" rel="tag">静かな退職</a></li></ul>		</div>
+	</li>
+	<li>
+		<div class="">
+			<a href="https://times.mazrica.com/concept/about-no-rating/">
+				<img src="https://mazrica.com/wp-content/uploads/sites/3/2023/02/mt_230207-min-680x400.png" class="mazrica-times_img" alt="ノーレイティングとは、ランク付けをしない人事評価｜メリットや導入企業の事例">
+			</a>
+		</div>
+		<div>
+			<p class="mazrica-times_date js-changeTxtColor">2023-02-14</p>
+			<p class="mazrica-times_ttl"><a class="mazrica-times_titleLink js-changeTxtColor" href="https://times.mazrica.com/concept/about-no-rating/">ノーレイティングとは、ランク付けをしない人事評価｜メリットや導入企業の事例</a></p>
+		</div>
+	</li>
+</ul>				<div class="section-linkWrap js-changeTxtColor">
+					<a href="https://times.mazrica.com" class="section-linkTxt js-changeTxtColor">
+						詳しく見る
+						<span class="section_linkImgWrap">
+							<img class="section_linkImg section_linkImg--navy js-linkImg_navy" src="https://corp-site.mazrica.com/assets/images/common/link/link_blue.png" alt="">
+							<img class="section_linkImg section_linkImg--white js-linkImg_white" src="https://corp-site.mazrica.com/assets/images/common/link/link_white.png" alt="">
+						</span>	
+					</a>
+				</div>
+			</div>
+		</section>
+		<section class="recruit mdl-common-wrap mdl-col section">
+			<h2 class="section_ttlImg"><img src="https://corp-site.mazrica.com/assets/images/top/title/RECRUIT.png" alt="RECRUIT"></h2>
+			<div class="section_ttlText js-changeTxtColor">
+				<span class="section_ttlTextBorder js-section-border"></span>
+				採用について
+			</div>
+			<div class="section_inner">
+				<div class="recruit_content">
+					<div class="recruit_left">
+						<h3 class="section_mainTxt js-changeTxtColor">テクノロジーの力で世界を<br class="pc-only">アップデートしていく<br class="pc-only"></h3>
+						<div class="section_txt js-changeTxtColor">
+							<p>人々のワークライフが充実する世界を実現していきます。<br>最新のテクノロジーを用いて、この世界をアップデートする道を<br class="pc-only">共に切り開くことを楽しみにしています。</p>
+							<div class="section-linkWrap js-changeTxtColor">
+								<a href="https://recruit.mazrica.com" class="section-linkTxt">
+									詳しく見る
+									<span class="section_linkImgWrap">
+										<img class="section_linkImg section_linkImg--navy js-linkImg_navy" src="https://corp-site.mazrica.com/assets/images/common/link/link_blue.png" alt="">
+										<img class="section_linkImg section_linkImg--white js-linkImg_white" src="https://corp-site.mazrica.com/assets/images/common/link/link_white.png" alt="">
+									</span>	
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="about-us_img about-us_right">
+						<p>
+							<img src="https://corp-site.mazrica.com/assets/images/top/recruit.png" alt="">
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+</main>
 
-    <!-- seed.tsのANYWHERE_WIDGET_*と一致させている -->
-    <script
-      async
-      src="http://localhost:3001/widget/fae185be-a612-4458-89b8-47352afe57c6/b72f5266-6c90-47ad-83a3-0736baaddb85/script.js"
-    ></script>
-    <script>
-      (function () {
-        const round = (n) => Math.round(n);
 
-        const getOrientation = () => {
-          if (screen.orientation && screen.orientation.type) {
-            return screen.orientation.type;
-          }
-          const iw = window.innerWidth;
-          const ih = window.innerHeight;
-          return iw > ih ? 'landscape' : 'portrait';
-        };
+<footer class="footer">
+    <div class="footer-flex">
+        <div class="footer-top">
+            <img src="https://corp-site.mazrica.com/assets/images/common/logo/mazrica_logo_white.png" class="footer_logo" alt="mazrica">
+            <ul class="footer-menu-list">
+                <li><a href="/">TOP</a></li>
+                <li><a href="https://mazrica.com/aboutus/">ABOUT US</a></li>
+                <li><a href="https://mazrica.com/business">BUSINESS</a></li>
+                <li><a href="https://mazrica.com/news">NEWS</a></li>
+                <li><a href="https://recruit.mazrica.com/team" target="_blank">TEAM<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png"></a></li>
+                <li><a href="https://recruit.mazrica.com" target="_blank">RECRUIT<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png"></a></li>
+            </ul>
+        </div>
+        <ul class="footer-sns">
+            <li><a href="https://www.facebook.com/mazrica/" target="_blank"><img src="https://corp-site.mazrica.com/assets/images/common/sns/fb.png" class="" alt="facebook"></a></li>
+            <li><a href="https://twitter.com/mazrica_jp" target="_blank"><img src="https://corp-site.mazrica.com/assets/images/common/sns/twitter.png" class="" alt="twitter"></a></li>
+        </ul>
+        <div class="footer-bottom">
+            <div class="footer-bottom_left">
+                <ul class="footer-bunner-list">
+                    <li><a href="https://product-senses.mazrica.com/senseslab/" target="_blank">Mazrica Business Lab.<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png"></a></li>
+                    <li><a href="https://times.mazrica.com" target="_blank">Mazrica times<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png"></a></li>
+                    <li><a href="https://www.wantedly.com/companies/mazrica/" target="_blank">Wantedly<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png"></a></li>
+                    <li><a href="https://note.com/mazrica" target="_blank">note<img src="https://corp-site.mazrica.com/assets/images/common/link/link_border.png"></a></li>
+                </ul>
+                <ul class="bogo-language-switcher"><li class="en-US en first"><a rel="alternate" hreflang="en-US" href="https://mazrica.com/en/" title="English">English</a></li>
+<li class="ja current last">日本語</li>
+</ul>
+                <ul class="footer-link">
+				<li><a href="https://mazrica.com/legal/terms">利用規約</a></li>
+				<li><a href="https://mazrica.com/privacy-policy">個人情報保護方針</a></li>
+				<li><a href="https://mazrica.com/information-security">情報セキュリティ基本方針</a></li>
+				<li><a href="https://mazrica.com/contact">お問い合わせ</a></li>
+				<li><a href="https://product-senses.mazrica.com/">クラウドアプリケーションMazricaのビジネスパートナー</a></li>
+			</ul>                <div class="footer__copyright">
+  <small class="footer-copyright">&copy;Mazrica Inc. - All rights reserved</small>
+</div>
+            </div>
+            <div class="footer-bottom_right">
+                <div class="isms_certified">
+  <div class="isms_certified__logos">
+    <div>
+      <img src="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/images/ISO 27001_2022 UKAS_black.jpg" alt="ISMS">
+      <p class="isms_certified__text">ISO/IEC 27001:2022 認証取得<br>登録番号:16246</p>
+    </div>  
+    <img class="isms_certified__logos--pmark" src="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/images/21005049_WH_jp.png" alt="Privacy mark">
+  </div>
+</div>            </div>
+        </div>
+    </div>
+</footer>
+<!-- /.wrapper -->
 
-        const updateViewportPanel = () => {
-          const innerText = `${round(window.innerWidth)} x ${round(window.innerHeight)} px`;
-          const visual = window.visualViewport;
-          const visualText = visual
-            ? `${round(visual.width)} x ${round(visual.height)} px`
-            : '未対応';
-          const dprText = (window.devicePixelRatio || 1).toFixed(2);
-          const orientText = getOrientation();
+<!-- ▼common js -->
+<script src="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/js/lib/jquery.min.js"></script>
+<script src="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/js/common.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+<script src="https://mazrica.com/wp-content/themes/mazrica-corp_250815/assets/js/animation.js"></script>
+<!-- ▲common js -->
+<!-- ▼Swiper -->
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<!-- ▲Swiper -->
 
-          const elInner = document.getElementById('vv-inner');
-          const elVisual = document.getElementById('vv-visual');
-          const elDpr = document.getElementById('vv-dpr');
-          const elOri = document.getElementById('vv-orientation');
-          if (elInner) elInner.textContent = innerText;
-          if (elVisual) elVisual.textContent = visualText;
-          if (elDpr) elDpr.textContent = dprText;
-          if (elOri) elOri.textContent = orientText;
-        };
-
-        const updateBox = (el) => {
-          const w = el.clientWidth;
-          const h = el.clientHeight;
-          const text = `${round(w)} x ${round(h)} px`;
-          const span = el.querySelector('.js-box-size');
-          if (span) span.textContent = text;
-        };
-
-        const initBoxes = () => {
-          const boxes = Array.from(document.querySelectorAll('.demo-item'));
-          boxes.forEach(updateBox);
-
-          if ('ResizeObserver' in window) {
-            const ro = new ResizeObserver((entries) => {
-              entries.forEach((entry) => {
-                updateBox(entry.target);
-              });
-            });
-            boxes.forEach((el) => ro.observe(el));
-          } else {
-            window.addEventListener('resize', () => {
-              boxes.forEach(updateBox);
-            });
-          }
-        };
-
-        window.addEventListener('resize', updateViewportPanel);
-        if (window.visualViewport) {
-          window.visualViewport.addEventListener('resize', updateViewportPanel);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-          updateViewportPanel();
-          initBoxes();
-        });
-      })();
-    </script>
-  </body>
+<!-- GTM Container placement set to footer -->
+<!-- Google Tag Manager (noscript) -->
+				<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCMW688T" height="0" width="0" style="display:none;visibility:hidden" aria-hidden="true"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --><script type='text/javascript' src='https://mazrica.com/wp-content/plugins/duracelltomi-google-tag-manager/dist/js/gtm4wp-form-move-tracker.js?ver=1.19.1' id='gtm4wp-form-move-tracker-js'></script>
+</body>
 </html>
